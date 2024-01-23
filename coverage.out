@@ -1,0 +1,15 @@
+mode: count
+mooc-test-driven-development/books/TDDbyExample/currency.go:19.34,21.2 1 53
+mooc-test-driven-development/books/TDDbyExample/currency.go:23.31,25.2 1 40
+mooc-test-driven-development/books/TDDbyExample/currency.go:27.37,29.2 1 6
+mooc-test-driven-development/books/TDDbyExample/currency.go:31.41,32.38 1 15
+mooc-test-driven-development/books/TDDbyExample/currency.go:32.38,34.10 2 3
+mooc-test-driven-development/books/TDDbyExample/currency.go:34.10,37.4 2 1
+mooc-test-driven-development/books/TDDbyExample/currency.go:38.3,38.67 1 2
+mooc-test-driven-development/books/TDDbyExample/currency.go:40.2,40.37 1 12
+mooc-test-driven-development/books/TDDbyExample/currency.go:43.48,44.38 1 4
+mooc-test-driven-development/books/TDDbyExample/currency.go:44.38,49.3 1 1
+mooc-test-driven-development/books/TDDbyExample/currency.go:51.2,52.9 2 3
+mooc-test-driven-development/books/TDDbyExample/currency.go:52.9,55.3 2 1
+mooc-test-driven-development/books/TDDbyExample/currency.go:57.2,57.109 1 2
+mooc-test-driven-development/books/TDDbyExample/currency.go:62.13,65.2 2 1
