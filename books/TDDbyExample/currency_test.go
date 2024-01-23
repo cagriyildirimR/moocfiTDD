@@ -5,25 +5,25 @@ import (
 	"testing"
 )
 
-func TestMoney_Times(t *testing.T) {
-	assert.True(t, Currency{5, USDollar}.Times(2).Equals(Currency{amount: 10, name: USDollar}))
-	assert.True(t, Currency{amount: 5, name: USDollar}.Times(3).Equals(Currency{amount: 15, name: USDollar}))
-	assert.False(t, Currency{amount: 5, name: USDollar}.Times(2).Equals(Currency{amount: 0, name: USDollar}))
-	assert.True(t, Currency{amount: 5, name: SwissFranc}.Times(2).Equals(Currency{amount: 10, name: SwissFranc}))
-	assert.True(t, Currency{amount: 5, name: SwissFranc}.Times(3).Equals(Currency{amount: 15, name: SwissFranc}))
-	assert.False(t, Currency{amount: 5, name: SwissFranc}.Times(2).Equals(Currency{amount: 0, name: SwissFranc}))
+func TestMoney_Equals(t *testing.T) {
+	assert.True(t, Money{amount: 10, currency: USDollar}.Equals(Money{amount: 10, currency: USDollar}))
+	assert.True(t, Money{amount: 10, currency: SwissFranc}.Equals(Money{amount: 10, currency: SwissFranc}))
+	assert.False(t, Money{amount: 10, currency: USDollar}.Equals(Money{amount: 11, currency: SwissFranc}))
+	assert.True(t, Money{amount: 10, currency: USDollar}.Equals(Money{amount: 5, currency: SwissFranc}))
 }
 
-func TestMoney_Equals(t *testing.T) {
-	assert.True(t, Currency{amount: 10, name: USDollar}.Equals(Currency{amount: 10, name: USDollar}))
-	assert.True(t, Currency{amount: 10, name: SwissFranc}.Equals(Currency{amount: 10, name: SwissFranc}))
-	assert.False(t, Currency{amount: 10, name: USDollar}.Equals(Currency{amount: 11, name: SwissFranc}))
-	assert.True(t, Currency{amount: 10, name: USDollar}.Equals(Currency{amount: 5, name: SwissFranc}))
+func TestMoney_Times(t *testing.T) {
+	assert.True(t, Money{5, USDollar}.Times(2).Equals(Money{amount: 10, currency: USDollar}))
+	assert.True(t, Money{amount: 5, currency: USDollar}.Times(3).Equals(Money{amount: 15, currency: USDollar}))
+	assert.False(t, Money{amount: 5, currency: USDollar}.Times(2).Equals(Money{amount: 0, currency: USDollar}))
+	assert.True(t, Money{amount: 5, currency: SwissFranc}.Times(2).Equals(Money{amount: 10, currency: SwissFranc}))
+	assert.True(t, Money{amount: 5, currency: SwissFranc}.Times(3).Equals(Money{amount: 15, currency: SwissFranc}))
+	assert.False(t, Money{amount: 5, currency: SwissFranc}.Times(2).Equals(Money{amount: 0, currency: SwissFranc}))
 }
 
 func TestMoney_Addition(t *testing.T) {
-	assert.True(t, Currency{amount: 2, name: USDollar}.Add(Currency{amount: 1, name: USDollar}).Equals(Currency{amount: 3, name: USDollar}))
-	assert.True(t, Currency{amount: 2, name: USDollar}.Add(Currency{amount: 1, name: SwissFranc}).Equals(Currency{amount: 4, name: USDollar}))
-	assert.True(t, Currency{amount: 2, name: SwissFranc}.Add(Currency{amount: 2, name: USDollar}).Equals(Currency{amount: 3, name: SwissFranc}))
-	assert.True(t, Currency{amount: 10, name: USDollar}.Add(Currency{amount: 10, name: SwissFranc}).Equals(Currency{amount: 30, name: USDollar}))
+	assert.True(t, Money{amount: 2, currency: USDollar}.Add(Money{amount: 1, currency: USDollar}).Equals(Money{amount: 3, currency: USDollar}))
+	assert.True(t, Money{amount: 2, currency: USDollar}.Add(Money{amount: 1, currency: SwissFranc}).Equals(Money{amount: 4, currency: USDollar}))
+	assert.True(t, Money{amount: 2, currency: SwissFranc}.Add(Money{amount: 2, currency: USDollar}).Equals(Money{amount: 3, currency: SwissFranc}))
+	assert.True(t, Money{amount: 10, currency: USDollar}.Add(Money{amount: 10, currency: SwissFranc}).Equals(Money{amount: 30, currency: USDollar}))
 }
