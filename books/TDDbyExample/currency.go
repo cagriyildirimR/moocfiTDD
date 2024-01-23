@@ -7,20 +7,12 @@ const (
 	SwissFranc = "CHF"
 )
 
-type Wallet interface {
-	Times(m int64) Wallet
-	Equals(other Wallet) bool
-	Amount() int64
-	Type() string
-	Add(m Wallet) Wallet
-}
-
 type Money struct {
 	amount   int64
 	currency string
 }
 
-func (a Money) Type() string {
+func (a Money) Currency() string {
 	return a.currency
 }
 
@@ -28,13 +20,13 @@ func (a Money) Amount() int64 {
 	return a.amount
 }
 
-func (a Money) Times(x int64) Wallet {
+func (a Money) Times(x int64) Money {
 	return Money{amount: a.Amount() * x, currency: a.currency}
 }
 
-func (a Money) Equals(other Wallet) bool {
-	if a.Type() != other.Type() {
-		exchangeRate, ok := exchangeRates[a.Type()+other.Type()]
+func (a Money) Equals(other Money) bool {
+	if a.Currency() != other.Currency() {
+		exchangeRate, ok := exchangeRates[a.Currency()+other.Currency()]
 		if !ok {
 			log.Print("Exchange Rate doesn't exist")
 		}
@@ -43,20 +35,20 @@ func (a Money) Equals(other Wallet) bool {
 	return a.Amount() == other.Amount()
 }
 
-func (a Money) Add(other Wallet) Wallet {
-	if a.Type() == other.Type() {
+func (a Money) Add(other Money) Money {
+	if a.Currency() == other.Currency() {
 		return Money{
 			amount:   a.Amount() + other.Amount(),
-			currency: a.Type(),
+			currency: a.Currency(),
 		}
 	}
 
-	exchangeRate, ok := exchangeRates[a.Type()+other.Type()]
+	exchangeRate, ok := exchangeRates[a.Currency()+other.Currency()]
 	if !ok {
 		log.Print("Exchange Rate doesn't exist")
 	}
 
-	return Money{amount: a.Amount() + int64(exchangeRate*float32(other.Amount())), currency: a.Type()}
+	return Money{amount: a.Amount() + int64(exchangeRate*float32(other.Amount())), currency: a.Currency()}
 }
 
 var exchangeRates = make(map[string]float32)
