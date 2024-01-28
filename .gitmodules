@@ -1,0 +1,3 @@
+[submodule "exercises/tdd-mooc-small-steps"]
+	path = exercises/tdd-mooc-small-steps
+	url = https://github.com/cagriyildirimR/tdd-mooc-small-steps
